@@ -3,8 +3,8 @@
 /**
  * Module dependencies.
  */
-// import { log } from 'console';
-import { log } from 'console';
+
+
 import app from '../app.js';
 import debug from 'debug';
 import http from 'http';
@@ -17,7 +17,7 @@ import {connect} from 'mongoose'
  */
 //PORT SE DEFINE EL PUERTO
 //PROCESS.ENV GUARDA  LAS CONFIGURACION DE VARIABLES DE ENTORNO M SE CON
-var port = normalizePort(process.env.PORT || '3000');
+let port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
