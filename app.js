@@ -11,8 +11,9 @@ import path from 'path';
 // var logger = require('morgan');
 import logger from 'morgan';
 import indexRouter from './routes/index.js';
+
 // 
-import usersRouter from './routes/users.js';
+// import usersRouter from './routes/users.js';
 // var usersRouter = require('./routes/users');
 
 
@@ -28,13 +29,19 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api', indexRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  console.log('url : '+req.url);
+  console.log(' method  '+req.method);
+  return res.status(404).json({
+    "success":false,
+    "mesage":' not found'+req.url+req.method
+  })
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -48,4 +55,4 @@ app.use(function(err, req, res, next) {
 });
 
 // module.exports = app;
-export default app;
+export default app
