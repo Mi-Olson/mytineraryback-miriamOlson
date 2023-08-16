@@ -1,8 +1,8 @@
-import City from "../../models/City.js";
+import User from "../../models/User.js";
 
 export default async (req,res)=> {
     try {
-        let updatedCity = await City.findByIdAndUpdate(
+        let updatedUser = await User.findByIdAndUpdate(
             req.params.u_id,
             req.body,
             { new:true }    //por default en FALSE y devuelve el objeto ANTES de la modificación
@@ -10,8 +10,8 @@ export default async (req,res)=> {
         ).select('name photo mail')
         return res.status(200).json({
             success: true,
-            message: 'city updated',
-            response: updatedCity
+            message: 'user updated',
+            response: updatedUser
         })
     } catch (error) {
         return res.status(400).json({
