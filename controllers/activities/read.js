@@ -1,15 +1,14 @@
-import User from "../../models/User.js";
+import Activity from "../../models/Activity.js";
 
 export default async (req,res) => {
-    //req: objeto con todos los requerimientos que envia el cliente
-    //res: objeto de respuesta a devolver al cliente
+    
     try {
-        let allUsers = await User.find()
-        //find BUSCA todos (en este caso usuarios)
+        let allActivities = await Activity.find()
+       
         return res.status(200).json({
             success: true,
-            message: 'users found',
-            response: allUsers
+            message: 'activities found',
+            response: allActivities
         })
     } catch (error) {
         return res.status(400).json({
