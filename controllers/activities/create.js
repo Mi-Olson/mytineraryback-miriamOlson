@@ -10,10 +10,6 @@ export default async (req, res) => {
             response: newUser._id
         })
     } catch (error) {
-        return res.status(400).json({
-            success: false,
-            message: 'not created',
-            response: null
-        })
+        next(error)
     }
 }

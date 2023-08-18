@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 
 router.use('/users', userRouter)
 router.use('/cities',citiesRouter)
-router.use('./itineraries',itinerariesRouter)
-router.use('./activities',activitiesRouter)
+router.use('/itineraries',itinerariesRouter)
+router.use('/activities',activitiesRouter)
 
 export default router;
