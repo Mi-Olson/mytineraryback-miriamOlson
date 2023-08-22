@@ -7,6 +7,13 @@ export default async (req,res,next) => {
         //let objetoDeBusqueda = { admin_id:'64d641453319242989c30fce' } //para el ejemplo ES IGUAL a req.query
         let objectSearch = {}
         let objectSort = {}
+        let pagination={page:1,limit:20}
+        if(req.query.page){
+            pagination.page=req.query.page
+        }
+        if(req.query.limit){
+            pagination.limit=req.query.limit
+        }
         if (req.query.admin_id) {
             objectSearch.admin_id = req.query.admin_id
         }
@@ -24,12 +31,17 @@ export default async (req,res,next) => {
             .find(objectSearch,'country city photo smalldescription admin_id')
             .populate('admin_id','photo name mail -_id')
             .sort(objectSort)
+            .skip(pagination.page > 0 ?(pagination.page-1)*pagination.limit:0)
+            .limit(pagination.limit >0 ? pagination.limit : 0)
         //let allCities = await City.find().select('country city photo smalldescription admin_id').populate('admin_id','photo name mail -_id')
+        
+        let count_total=await City.estimatedDocumentCount()
+        let count=await City.countDocuments(objectSearch)
         if (allCities.length>0) {
             return res.status(200).json({
                 success: true,
                 message: 'cities found',
-                response: allCities
+                response: allCities,count,count_total
             })
         } else {
             return res.status(404).json({
