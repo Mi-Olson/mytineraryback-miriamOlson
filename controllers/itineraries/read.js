@@ -6,11 +6,9 @@ export default async (req, res,next) => {
        
         let objectSearch = {}
         let objectSort = {}
-        if (req.query.admin_id) {
-            objectSearch.admin_id = req.query.admin_id
-        }
-        if (req.query.city) {
-            objectSearch.city = new RegExp(req.query.city,'i')
+        
+        if (req.query.city_id) {
+            objectSearch.city_id = req.query.city_id
             //new RegExp(req.query.title,'i')
         }
         if (req.query.sort) {
