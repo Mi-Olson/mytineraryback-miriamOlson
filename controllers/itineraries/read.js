@@ -16,9 +16,10 @@ export default async (req, res,next) => {
             
         }
         let allItineraries = await Itinerary
-            .find(objectSearch,'name price duration photo city_id')
-            .populate('city_id','photo city smalldescription -_id')
+            .find(objectSearch,'name price duration photo city_id tags')
+            .populate('city_id','photo city smalldescription -_id admin_id')
             .sort(objectSort)
+         
        
         if (allItineraries.length>0) {
             return res.status(200).json({
