@@ -6,14 +6,14 @@ import validator from "../middlewares/validator.js";
 
 import registerSchema from "../schemas/register.js";
 
-// import isValidToken from "../middlewares/isValidToken.js";
-// import isPassOk from "../middlewares/isPassOk.js";
-// import notExistsUser from "../middlewares/notExistsUser.js";
+import isValidToken from "../middlewares/isValidToken.js";
+import isPassOk from "../middlewares/isPassOk.js";
+import notExistsUser from "../middlewares/notExistsUser.js";
 import isValidPass from "../middlewares/isValidPass.js";
-// import existsUser from "../middlewares/existsUser.js";
+
 import existUser from "../middlewares/existUser.js";
 
-// import signinSchema from "../schemas/signin.js";
+import signinSchema from "../schemas/signin.js";
 
 let authRouter = Router();
 
@@ -31,10 +31,10 @@ authRouter.post(
 );
 authRouter.post(
   "/signin",
-  // validator(signinSchema),
-  // notExistsUser,
-  // isPassOk,
-  // isValidToken,
+  validator(signinSchema),
+  notExistsUser,
+  isPassOk,
+  isValidToken,
   signin
 );
 
