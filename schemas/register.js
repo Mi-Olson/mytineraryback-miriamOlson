@@ -14,9 +14,9 @@ let registerSchema = joi.object({
         "any.required": "email is required", //para cuando NO se envía el dato
         "string.empty": "email is required"  //para cuando se envía VACÍO
     }),
-    password: joi.string().required().min(3).max(6).empty("").messages({
+    password: joi.string().required().min(3).max(10).empty("").messages({
         'string.min': "password must have at least 3 characters please!",
-        "string.max": "password must be less than 7 characters please!",
+        "string.max": "password must be less than 10 characters please!",
         "any.required": "password is required", //para cuando NO se envía el dato
         "string.empty": "password is required"}),
 
